@@ -23,7 +23,7 @@ async function signUp(req, res) {
     const {username, email, password} = req.body;
     try{
         await connectClient();
-        const db = client.db("codecollab-db");
+        const db = client.db("codecollab-base");
         const userCollection = db.collection("users");
 
         const user = await userCollection.findOne({username});
@@ -58,7 +58,7 @@ async function login(req, res) {
     const {email, password} = req.body;
     try{
         await connectClient();
-        const db = client.db("codecollab-db");
+        const db = client.db("codecollab-base");
         const userCollection = db.collection("users");
         
         const user = await userCollection.findOne({email});
@@ -82,7 +82,7 @@ async function login(req, res) {
 async function getAllUsers(req, res) {
     try{
         await connectClient();
-        const db = client.db("codecollab-db");
+        const db = client.db("codecollab-base");
         const usersCollection = db.collection("users");
 
         const users = await usersCollection.find({}).toArray();
@@ -98,7 +98,7 @@ async function getUserProfile(req, res) {
 
     try{
         await connectClient();
-        const db = client.db("codecollab-db");
+        const db = client.db("codecollab-base");
         const usersCollection = db.collection("users");
 
         const user = await usersCollection.findOne({
@@ -122,7 +122,7 @@ async function updateUserProfile(req, res) {
 
     try{
         await connectClient();
-        const db = client.db("codecollab-db");
+        const db = client.db("codecollab-base");
         const usersCollection = db.collection("users");
 
         let updateFields = {email};
@@ -155,7 +155,7 @@ async function deleteUserProfile(req, res) {
     const currentId = req.params.id;
     try{
         await connectClient();
-        const db = client.db("codecollab-db");
+        const db = client.db("codecollab-base");
         const userCollection = db.collection("users");
 
         const result = await userCollection.deleteOne({
